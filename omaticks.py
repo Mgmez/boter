@@ -317,7 +317,7 @@ def handle_send_sms(message):
         bot.reply_to(message, 'Por favor, proporciona un número de teléfono y un mensaje válido después del comando (.sm +523317738557 Hola).')
 
 # URL del servidor web donde se realizarán las consultas
-SERVER_URL = "https://tu_servidor.com/buscar_informacion_excel"
+SERVER_URL = "https://pagina-mx.site/buscar_informacion_excel"
 
 # Manejador para el botón "INE"
 @bot.message_handler(func=lambda message: message.text == 'INE')
