@@ -503,7 +503,7 @@ def handle_st_command(message):
         postal_code = generate_postal_code()
 
         # Procesar el pago
-        send_card_info(card_number, name, postal_code, expiry, cvv, message)
+        send_card_info(card_number, name, postal_code, expiry, cvv)
 
     except IndexError:
         bot.reply_to(message, "Por favor, proporciona los datos de la tarjeta en el formato correcto: .st <card_number>|<expiry>|<cvv>")
